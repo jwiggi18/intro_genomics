@@ -1,0 +1,27 @@
+---
+title: "packages"
+author: "JM_Wiggins"
+date: "2/8/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R packages needed for downloading and analyzing GDAC firehose cancer data
+
+
+```{r}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("Biobase")
+
+install.packages("librarian")
+librarian::shelf(devtools, mariodeng/FirebrowseR, ggplot2)
+```
+
+## Package information:
+
+FirebrowsR: https://rdrr.io/github/mariodeng/FirebrowseR/f/vignettes/FirebrowseR.Rmd
