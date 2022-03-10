@@ -220,8 +220,41 @@ gene2 = stats::rnorm(30, mean=2, sd=2)
 #calculate differences in means
 org.diff = base::mean(gene1) - base::mean(gene2)
 
-
+#create a data frame with values in column 1 and the labels 'test' and 'control' in column 2 corresponding to gene1 (the gene we are calling 'test') and gene2 (the gene we are calling 'control')
 gene.df = base::data.frame(exp = base::c(gene1, gene2),
                   group = c(base::rep("test", 30), base::rep("control", 30)))
 ```
+
+to produce exp.null we use the gene.df data frame but 'shuffle' which values are paired with which group and replicates 1000 times.
+```{r}
+#
+exp.null <- mosaic::do(1000) * mosaic::diff(mosaic::mean(exp ~ mosaic::shuffle(group), data = gene.df))
+                                                 
+```
+Create a histogram of the randomly distributed values (if the null hypothesis is correct) using the first column of the data frame 'exp.null' (where the values are stored).  
+use ?hist to explore the arguments below
+```{r}
+hist(exp.null[,1], xlab="null distribution | no difference in samples", main = expression(paste(H[0], ":no difference in means")), xlim = c(-2, 2), col="cornflowerblue", border="white")
+
+#add a red line to indicate the location of the 95% percentile
+graphics::abline(v = mosaic::quantile(exp.null[, 1], 0.95), col = "red" )
+
+#add a blue line to indicate the original difference in means between sample groups
+graphics::abline(v = org.diff, col = "blue" )
+
+#add a red label '0.05' to the red line at the level of 200 on the y-axis (corresponds to a p-value of 0.05)
+graphics::text(x = mosaic::quantile(exp.null[, 1], 0.95), y = 200,"0.05", adj = c(1, 0), col="red")
+
+#add a blue label 'org. diff.' to the blue line at the level of 200 on the y-axis
+graphics::text(x = org.diff, y = 200,"org. diff.", adj = c(1, 0), col = "blue")
+```
+
+Calculate the p-value of the difference between the randomly produced null data set and the original data set.
+```{r}
+p.val = base::sum(exp.null[, 1] > org.diff) / base::length(exp.null[, 1])
+p.val 
+```
+
+### 3.2.2 Using t-test for difference of the means between two samples
+No R explainations required in this section
 
