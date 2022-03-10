@@ -1,0 +1,171 @@
+---
+title: "Genomics with R 3.1"
+output: html_notebook
+---
+
+
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+Explainations of statistics and exercises taken from Computational [Genomics with R](https://compgenomr.github.io/book/)
+This section begins with [3.1](https://compgenomr.github.io/book/how-to-summarize-collection-of-data-points-the-idea-behind-statistical-distributions.html)
+
+In this section we assign the variable 'x' to the output of runif(10)
+
+anytime you want to know more about a function use the '?' before the name of the function as below:
+
+```r
+?runif
+```
+
+In the panel to the right you will see information about this function appear. 
+______
+Each function help page follows the same format. 
+
+They start with a brief DESCRIPTION of what the package does.
+
+USAGE shows the various arguments you need to specify when using the function - some will be compulsory, some will be optional.
+
+ARGUMENTS - very briefly describes each of the arguments that you need to specify.
+
+DETAILS - very variable  - the author of the function often gives more details about the function.
+
+VALUE - this tells you what the outputs of the function will be.
+
+AUTHORS, REFERENCES - self explanatory
+
+SEE ALSO - points you in the direction of related functions
+
+EXAMPLES - gives you some code snippets to show you the function being used in practise. *I find these to be the most helpul and often scroll here first*
+
+Some packages will also have "vignettes", which give more detailed descriptions of how the functions within a package should be used.
+________
+This documentation takes some getting used to. It is often helpful to google 'tutorials function_name' if you are struggling. There will be a lot of examples of how to use it. Play with the function and see what happens. This will be your best teacher. 
+
+________
+
+In the `runif()` documentation under usage:
+runif(n, min = 0, max = 1)
+n = how many randome numbers you want
+min = 0: the defalut lowest number is 0
+max = 1: the default hightest number is 1
+
+This is useful for simulating data. 
+
+Here I use the package::function() structure. This provides you with information about which package each function comes from. It makes code much more understandable and repeatable. 
+
+The 'stats' package comes standard with R distributions so we do not need to install it or go to the libarary to "get" it. 
+
+So if we run:
+
+```r
+x = stats::runif(10)
+```
+We are telling the function to create 10 random numbers between 0 and 1 and to assign those numbers (called a vector) to the variable 'x'.
+
+base indicates this is a base R function, not part of any package
+
+```r
+# calculate mean
+base::mean(x)
+```
+
+```
+## [1] 0.6169661
+```
+
+```r
+#calculate median
+base::median(x)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'median' not found
+```
+
+3.1.2 Describing the spread
+
+Now we will randomly generate a vector of numbers using `rnorm()`
+
+```r
+?rnorm
+```
+
+rnorm creates a vector of numbers with a normal distribution (see [3.1.2.1](https://tinyurl.com/4cxxwyap))
+
+Once again the documentation to the left provides information about the arguments the function will take.
+n = how many numbers do we want in our distribution
+mean = what do we want the mean of our distribution to be?
+sd = what doe we want the standard distribution to be?
+
+
+```r
+#assign a vector 20 of numbers that are a normal distribution with a mean of 6 and a standard deviation of 0.7
+x = stats::rnorm(20, mean = 6, sd = 0.7)
+
+#note the following are exactly the same command
+#remove white space (entirely preference, I find white space makes code more readable)
+#x=rnorm(20,mean=6,sd=0.7)
+
+#mean and sd indicated by their positions in the function, no names needed
+#x = rnorm(20, 6, 0.7)
+
+#calculate and output the variance of 'x'
+stats::var(x)
+```
+
+```
+## [1] 0.291106
+```
+
+```r
+#calculate and output the standard deviation of 'x'
+stats::sd(x)
+```
+
+```
+## [1] 0.5395424
+```
+
+To evaluate the influece of [outliers](https://tinyurl.com/mrx82szf) in our data:
+
+```r
+#calcuate the interquartile range
+stats::IQR(x)
+```
+
+```
+## [1] 0.7050848
+```
+
+```r
+#calculate the quantiles of the data
+stats::quantile(x)
+```
+
+```
+##       0%      25%      50%      75%     100% 
+## 5.123507 5.723435 5.921227 6.428520 7.128583
+```
+
+These data are very useful but can be difficult to understand without a visual. To visualize the data we can create a boxplot. Graphics is a default package distribution with R so no need to install it and go get it from the library. 
+
+Note that many R users shorten TRUE to T and FALSE to F. While this is commone practice it reduces code readability and potentially produces unintended results. What if a variable has been assigned to 'T' or 'F'?
+
+```r
+#plot the vector 'x' as a boxplot horizontally rather than vertically (vertical is the default)
+graphics::boxplot(x, horizontal = TRUE)
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+
+Try the same plot without `horizontal = TRUE.` What happens?
+
+Look back at or rerun `stats::quantile.` How do these numbers map to the box plot?
+
+Calculate the mean and median for 'x' to determine what the solid line on the plot represents.
+
+
+
