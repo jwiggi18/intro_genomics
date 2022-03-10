@@ -2,11 +2,14 @@
 title: "Genomics with R 3.1"
 output: html_notebook
 ---
+This document is an extension and explanation of the *R exercises* in the book [Genomics with R](https://compgenomr.github.io/book/) for Dr. Wiggins' Introductory Genomics course at Oklahoma State University.
+
+The [Genomics with R](https://compgenomr.github.io/book/) book contains critical information, explains the statistics used, and provides the exercises.
+
+This document is intended as a companion to the [Genomics with R](https://compgenomr.github.io/book/) book for students who are R beginners. 
+
 These instructions are for RStudio. 
 In this course we are running RStudio through the Cyverse platform
-
-
-Explanations of statistics and exercises taken from Computational [Genomics with R](https://compgenomr.github.io/book/)
 
 This section begins with [3.1](https://compgenomr.github.io/book/how-to-summarize-collection-of-data-points-the-idea-behind-statistical-distributions.html)
 
@@ -137,7 +140,7 @@ Look back at or rerun `stats::quantile.` How do these numbers map to the box plo
 Calculate the mean and median for `x` to determine what the solid line on the plot represents.
 
 
-### [3.1.2 Precision of estimates: Confidence intervals](https://tinyurl.com/2p9f6tsj).
+### [3.1.2 Precision of estimates: Confidence intervals](https://tinyurl.com/2p9f6tsj)
 
 Now we will be using a package that doesn't come standard with R.
 
@@ -176,8 +179,9 @@ Now we get percentiles and plot.
 boot.means[,1] tells the function to calculate using all of the values in the first column. Synatax is [row,column].  
 p = is setting our percentiles to 2.5% and 97.5% (so outside of these percentiles is outside of 95%)
 
+to learn about `c` use ?c
 ```{r}
-q = mosaic::quantile(boot.means[,1], p = c(0.025, 0.975))
+q = mosaic::quantile(boot.means[,1], p = base::c(0.025, 0.975))
 ```
 
 Plot the histogram
@@ -185,8 +189,8 @@ Plot the histogram
 ```{r}
 graphics::hist(boot.means[,1], col = "cornflowerblue", border = "white", xlab = "sample means")
 abline(v = c(q[1], q[2]), col = "red")
-text(x = q[1], y = 200, round(q[1],3), adj = c(1,0))
-text(x = q[2], y = 200, round(q[2],3), adj = c(0,0))
+text(x = q[1], y = 200, round(q[1],3), adj = base::c(1,0))
+text(x = q[2], y = 200, round(q[2],3), adj = base::c(0,0))
 ```
 ### Using `qnorm` to calculate Z-scores
 
@@ -197,4 +201,27 @@ n = 50
 mean(sample1) + qnorm(c(alpha/2, 1-alpha/2)) * sd/sqrt(n)
 ```
 
+### [3.2.1 Randomization-based testing for difference of the means](https://compgenomr.github.io/book/how-to-test-for-differences-between-samples.html#randomization-based-testing-for-difference-of-the-means)
+
+for explanations of `set.seed()` and `rnorm()` see above (hint: ctrl + F will bring up a search bar to search the document for these functions)
+
+Below we are creating variables called 'gene1', 'gene2', 'org.diff', and 'gene.df'.  
+'gene1' & 'gene2' are .  
+
+to learn about `data.frame` and `rep` use ?data.frame and ?rep
+```{r}
+#set the seed to 100
+base::set.seed(100)
+
+#simulate gene expression measurements obtained under different conditions
+gene1 = stats::rnorm(30, mean=4, sd=2)
+gene2 = stats::rnorm(30, mean=2, sd=2)
+
+#calculate differences in means
+org.diff = base::mean(gene1) - base::mean(gene2)
+
+
+gene.df = base::data.frame(exp = base::c(gene1, gene2),
+                  group = c(base::rep("test", 30), base::rep("control", 30)))
+```
 
