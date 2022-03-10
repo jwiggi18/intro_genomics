@@ -255,6 +255,11 @@ p.val = base::sum(exp.null[, 1] > org.diff) / base::length(exp.null[, 1])
 p.val 
 ```
 
-### 3.2.2 Using t-test for difference of the means between two samples
-No R explainations required in this section
+### [3.2.2 Using t-test for difference of the means between two samples](https://compgenomr.github.io/book/how-to-test-for-differences-between-samples.html#using-t-test-for-difference-of-the-means-between-two-samples)
+No R explanations required in this section
+
+### [3.2.3 Multiple testing correction](https://compgenomr.github.io/book/how-to-test-for-differences-between-samples.html#multiple-testing-correction)
+
+
+
 
