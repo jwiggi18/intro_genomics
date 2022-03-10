@@ -214,13 +214,26 @@ pre code {
 </div>
 
 
-<p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Ctrl+Shift+K</em> to preview the HTML file).</p>
-<p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
-<p>Explainations of statistics and exercises taken from Computational <a href="https://compgenomr.github.io/book/">Genomics with R</a> This section begins with <a href="https://compgenomr.github.io/book/how-to-summarize-collection-of-data-points-the-idea-behind-statistical-distributions.html">3.1</a></p>
-<p>In this section we assign the variable ‘x’ to the output of runif(10)</p>
-<p>anytime you want to know more about a function use the ‘?’ before the name of the function as below:</p>
+<p>Explanations of statistics and exercises taken from Computational <a href="https://compgenomr.github.io/book/">Genomics with R</a></p>
+<p>This section begins with <a href="https://compgenomr.github.io/book/how-to-summarize-collection-of-data-points-the-idea-behind-statistical-distributions.html">3.1</a></p>
+<div id="here-i-use-the-packagefunction-structure." class="section level4">
+<h4>Here I use the <code>package::function()</code> structure.</h4>
+<p>This provides you with information about which package each function comes from. It makes code much more understandable and repeatable.</p>
+</div>
+<div id="section" class="section level3">
+<h3>3.1.1</h3>
+<hr />
+</div>
+<div id="runif" class="section level3">
+<h3>runif()</h3>
+<p>First we assign the variable ‘x’ to the output of runif(10)</p>
+<p>Anytime you want to know more about a function use the ‘?’ before the name of the function as below:</p>
 <pre class="{r}"><code>?runif</code></pre>
-<p>In the panel to the right you will see information about this function appear. ______ Each function help page follows the same format.</p>
+<p>In the panel to the right -&gt; you will see information about this function appear.</p>
+<hr />
+<div id="reading-documentation" class="section level4">
+<h4>Reading Documentation</h4>
+<p>Each function help page follows the same format.</p>
 <p>They start with a brief DESCRIPTION of what the package does.</p>
 <p>USAGE shows the various arguments you need to specify when using the function - some will be compulsory, some will be optional.</p>
 <p>ARGUMENTS - very briefly describes each of the arguments that you need to specify.</p>
@@ -228,27 +241,36 @@ pre code {
 <p>VALUE - this tells you what the outputs of the function will be.</p>
 <p>AUTHORS, REFERENCES - self explanatory</p>
 <p>SEE ALSO - points you in the direction of related functions</p>
-<p>EXAMPLES - gives you some code snippets to show you the function being used in practise. <em>I find these to be the most helpul and often scroll here first</em></p>
-<p>Some packages will also have “vignettes”, which give more detailed descriptions of how the functions within a package should be used. ________ This documentation takes some getting used to. It is often helpful to google ‘tutorials function_name’ if you are struggling. There will be a lot of examples of how to use it. Play with the function and see what happens. This will be your best teacher.</p>
+<p>EXAMPLES - gives you some code snippets to show you the function being used in practice. <em>I find these to be the most helpful and often scroll here first</em></p>
+<p>Some packages will also have “vignettes”, which give more detailed descriptions of how the functions within a package should be used. ________</p>
+<p>This documentation takes some getting used to. It is often helpful to google ‘tutorials function_name’ if you are struggling. There will be a lot of examples of how to use it. Play with the function and see what happens. This will be your best teacher.</p>
 <hr />
-<p>In the <code>runif()</code> documentation under usage: runif(n, min = 0, max = 1) n = how many randome numbers you want min = 0: the defalut lowest number is 0 max = 1: the default hightest number is 1</p>
+<p>In the <code>runif()</code> documentation under usage:<br />
+<code>runif(n, min = 0, max = 1)</code>. n = how many random numbers you want. min = 0: the default lowest number is 0. max = 1: the default highest number is 1.</p>
 <p>This is useful for simulating data.</p>
-<p>Here I use the package::function() structure. This provides you with information about which package each function comes from. It makes code much more understandable and repeatable.</p>
-<p>The ‘stats’ package comes standard with R distributions so we do not need to install it or go to the libarary to “get” it.</p>
+<p>The <code>stats</code> package comes standard with R distributions so we do not need to install it or go to the library to “get” it.</p>
 <p>So if we run:</p>
 <pre class="{r}"><code>x = stats::runif(10)</code></pre>
-<p>We are telling the function to create 10 random numbers between 0 and 1 and to assign those numbers (called a vector) to the variable ‘x’.</p>
-<p>base indicates this is a base R function, not part of any package</p>
+<p>We are telling the function to create 10 random numbers between 0 and 1 and to assign those numbers (called a vector) to the variable <code>x</code>.</p>
+<p><code>base</code> indicates this is a base R function, not part of any package</p>
 <pre class="{r}"><code># calculate mean
 base::mean(x)
 
 #calculate median
 base::median(x)</code></pre>
-<p>3.1.2 Describing the spread</p>
+<hr />
+</div>
+</div>
+<div id="describing-the-spread." class="section level3">
+<h3>3.1.2 Describing the spread.</h3>
+</div>
+<div id="rnorm" class="section level3">
+<h3>rnorm()</h3>
 <p>Now we will randomly generate a vector of numbers using <code>rnorm()</code></p>
 <pre class="{r}"><code>?rnorm</code></pre>
-<p>rnorm creates a vector of numbers with a normal distribution (see <a href="https://tinyurl.com/4cxxwyap">3.1.2.1</a>)</p>
-<p>Once again the documentation to the left provides information about the arguments the function will take. n = how many numbers do we want in our distribution mean = what do we want the mean of our distribution to be? sd = what doe we want the standard distribution to be?</p>
+<p><code>rnorm()</code> creates a vector of numbers with a normal distribution (see <a href="https://tinyurl.com/4cxxwyap">3.1.2.1</a>)</p>
+<p>Once again the documentation to the right -&gt; provides information about the arguments the function will take. n = how many numbers do we want in our distribution. mean = what do we want the mean of our distribution to be?<br />
+sd = what doe we want the standard distribution to be?</p>
 <pre class="{r}"><code>#assign a vector 20 of numbers that are a normal distribution with a mean of 6 and a standard deviation of 0.7
 x = stats::rnorm(20, mean = 6, sd = 0.7)
 
@@ -264,21 +286,59 @@ stats::var(x)
 
 #calculate and output the standard deviation of &#39;x&#39;
 stats::sd(x)</code></pre>
-<p>To evaluate the influece of <a href="https://tinyurl.com/mrx82szf">outliers</a> in our data:</p>
+<p>To evaluate the influence of <a href="https://tinyurl.com/mrx82szf">outliers</a> in our data:</p>
 <pre class="{r}"><code>#calcuate the interquartile range
 stats::IQR(x)
 
 #calculate the quantiles of the data
 stats::quantile(x)</code></pre>
-<p>These data are very useful but can be difficult to understand without a visual. To visualize the data we can create a boxplot. Graphics is a default package distribution with R so no need to install it and go get it from the library.</p>
-<p>Note that many R users shorten TRUE to T and FALSE to F. While this is commone practice it reduces code readability and potentially produces unintended results. What if a variable has been assigned to ‘T’ or ‘F’?</p>
+<p>These data are very useful but can be difficult to understand without a visual. To visualize the data we can create a boxplot. <code>graphics</code> is a default package distribution with R so no need to install it and go get it from the library.</p>
+<p>Note that many R users shorten TRUE to T and FALSE to F. While this is common practice it reduces code readability and potentially produces unintended results. What if a variable has been assigned to ‘T’ or ‘F’?</p>
 <pre class="{r}"><code>#plot the vector &#39;x&#39; as a boxplot horizontally rather than vertically (vertical is the default)
 graphics::boxplot(x, horizontal = TRUE)</code></pre>
 <p>Try the same plot without <code>horizontal = TRUE.</code> What happens?</p>
 <p>Look back at or rerun <code>stats::quantile.</code> How do these numbers map to the box plot?</p>
-<p>Calculate the mean and median for ‘x’ to determine what the solid line on the plot represents.</p>
+<p>Calculate the mean and median for <code>x</code> to determine what the solid line on the plot represents.</p>
+</div>
+<div id="precision-of-estimates-confidence-intervals." class="section level3">
+<h3><a href="https://tinyurl.com/2p9f6tsj">3.1.2 Precision of estimates: Confidence intervals</a>.</h3>
+<p>Now we will be using a package that doesn’t come standard with R.</p>
+<p>We need to install the package called <code>mosaic</code>.</p>
+<pre class="{r}"><code>install.packages(&quot;mosaic&quot;)</code></pre>
+<p>Then we go to our library where packages are stored to ‘checkout’ the package. I think of it like going to the library to check out a book.</p>
+<pre class="{r}"><code>library(mosaic)</code></pre>
+<div id="set.seed." class="section level4">
+<h4>set.seed().</h4>
+<p>Now we are going to use a function called <code>set.seed()</code> to make our analysis repeatable. We are going to be using randomly generated numbers for the analysis. When we ask R to ‘go get’ a set of randomly generated numbers it needs to know where to start from its list of random numbers. The starting point is the ‘seed.’ If we don’t set the seed then R uses the session starting time (it’s clock) to determine where to start in the list. This makes the analysis impossible to repeat. Therefore, we set a seed.</p>
+<pre class="{r}"><code>#set the seed to 21
+base::set.seed(21)
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiR2Vub21pY3Mgd2l0aCBSIDMuMSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCgpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwrU2hpZnQrSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4KClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4KCkV4cGxhaW5hdGlvbnMgb2Ygc3RhdGlzdGljcyBhbmQgZXhlcmNpc2VzIHRha2VuIGZyb20gQ29tcHV0YXRpb25hbCBbR2Vub21pY3Mgd2l0aCBSXShodHRwczovL2NvbXBnZW5vbXIuZ2l0aHViLmlvL2Jvb2svKQpUaGlzIHNlY3Rpb24gYmVnaW5zIHdpdGggWzMuMV0oaHR0cHM6Ly9jb21wZ2Vub21yLmdpdGh1Yi5pby9ib29rL2hvdy10by1zdW1tYXJpemUtY29sbGVjdGlvbi1vZi1kYXRhLXBvaW50cy10aGUtaWRlYS1iZWhpbmQtc3RhdGlzdGljYWwtZGlzdHJpYnV0aW9ucy5odG1sKQoKSW4gdGhpcyBzZWN0aW9uIHdlIGFzc2lnbiB0aGUgdmFyaWFibGUgJ3gnIHRvIHRoZSBvdXRwdXQgb2YgcnVuaWYoMTApCgphbnl0aW1lIHlvdSB3YW50IHRvIGtub3cgbW9yZSBhYm91dCBhIGZ1bmN0aW9uIHVzZSB0aGUgJz8nIGJlZm9yZSB0aGUgbmFtZSBvZiB0aGUgZnVuY3Rpb24gYXMgYmVsb3c6CmBgYHtyfQo/cnVuaWYKYGBgCgpJbiB0aGUgcGFuZWwgdG8gdGhlIHJpZ2h0IHlvdSB3aWxsIHNlZSBpbmZvcm1hdGlvbiBhYm91dCB0aGlzIGZ1bmN0aW9uIGFwcGVhci4gCl9fX19fXwpFYWNoIGZ1bmN0aW9uIGhlbHAgcGFnZSBmb2xsb3dzIHRoZSBzYW1lIGZvcm1hdC4gCgpUaGV5IHN0YXJ0IHdpdGggYSBicmllZiBERVNDUklQVElPTiBvZiB3aGF0IHRoZSBwYWNrYWdlIGRvZXMuCgpVU0FHRSBzaG93cyB0aGUgdmFyaW91cyBhcmd1bWVudHMgeW91IG5lZWQgdG8gc3BlY2lmeSB3aGVuIHVzaW5nIHRoZSBmdW5jdGlvbiAtIHNvbWUgd2lsbCBiZSBjb21wdWxzb3J5LCBzb21lIHdpbGwgYmUgb3B0aW9uYWwuCgpBUkdVTUVOVFMgLSB2ZXJ5IGJyaWVmbHkgZGVzY3JpYmVzIGVhY2ggb2YgdGhlIGFyZ3VtZW50cyB0aGF0IHlvdSBuZWVkIHRvIHNwZWNpZnkuCgpERVRBSUxTIC0gdmVyeSB2YXJpYWJsZSAgLSB0aGUgYXV0aG9yIG9mIHRoZSBmdW5jdGlvbiBvZnRlbiBnaXZlcyBtb3JlIGRldGFpbHMgYWJvdXQgdGhlIGZ1bmN0aW9uLgoKVkFMVUUgLSB0aGlzIHRlbGxzIHlvdSB3aGF0IHRoZSBvdXRwdXRzIG9mIHRoZSBmdW5jdGlvbiB3aWxsIGJlLgoKQVVUSE9SUywgUkVGRVJFTkNFUyAtIHNlbGYgZXhwbGFuYXRvcnkKClNFRSBBTFNPIC0gcG9pbnRzIHlvdSBpbiB0aGUgZGlyZWN0aW9uIG9mIHJlbGF0ZWQgZnVuY3Rpb25zCgpFWEFNUExFUyAtIGdpdmVzIHlvdSBzb21lIGNvZGUgc25pcHBldHMgdG8gc2hvdyB5b3UgdGhlIGZ1bmN0aW9uIGJlaW5nIHVzZWQgaW4gcHJhY3Rpc2UuICpJIGZpbmQgdGhlc2UgdG8gYmUgdGhlIG1vc3QgaGVscHVsIGFuZCBvZnRlbiBzY3JvbGwgaGVyZSBmaXJzdCoKClNvbWUgcGFja2FnZXMgd2lsbCBhbHNvIGhhdmUgInZpZ25ldHRlcyIsIHdoaWNoIGdpdmUgbW9yZSBkZXRhaWxlZCBkZXNjcmlwdGlvbnMgb2YgaG93IHRoZSBmdW5jdGlvbnMgd2l0aGluIGEgcGFja2FnZSBzaG91bGQgYmUgdXNlZC4KX19fX19fX18KVGhpcyBkb2N1bWVudGF0aW9uIHRha2VzIHNvbWUgZ2V0dGluZyB1c2VkIHRvLiBJdCBpcyBvZnRlbiBoZWxwZnVsIHRvIGdvb2dsZSAndHV0b3JpYWxzIGZ1bmN0aW9uX25hbWUnIGlmIHlvdSBhcmUgc3RydWdnbGluZy4gVGhlcmUgd2lsbCBiZSBhIGxvdCBvZiBleGFtcGxlcyBvZiBob3cgdG8gdXNlIGl0LiBQbGF5IHdpdGggdGhlIGZ1bmN0aW9uIGFuZCBzZWUgd2hhdCBoYXBwZW5zLiBUaGlzIHdpbGwgYmUgeW91ciBiZXN0IHRlYWNoZXIuIAoKX19fX19fX18KCkluIHRoZSBgcnVuaWYoKWAgZG9jdW1lbnRhdGlvbiB1bmRlciB1c2FnZToKcnVuaWYobiwgbWluID0gMCwgbWF4ID0gMSkKbiA9IGhvdyBtYW55IHJhbmRvbWUgbnVtYmVycyB5b3Ugd2FudAptaW4gPSAwOiB0aGUgZGVmYWx1dCBsb3dlc3QgbnVtYmVyIGlzIDAKbWF4ID0gMTogdGhlIGRlZmF1bHQgaGlnaHRlc3QgbnVtYmVyIGlzIDEKClRoaXMgaXMgdXNlZnVsIGZvciBzaW11bGF0aW5nIGRhdGEuIAoKSGVyZSBJIHVzZSB0aGUgcGFja2FnZTo6ZnVuY3Rpb24oKSBzdHJ1Y3R1cmUuIFRoaXMgcHJvdmlkZXMgeW91IHdpdGggaW5mb3JtYXRpb24gYWJvdXQgd2hpY2ggcGFja2FnZSBlYWNoIGZ1bmN0aW9uIGNvbWVzIGZyb20uIEl0IG1ha2VzIGNvZGUgbXVjaCBtb3JlIHVuZGVyc3RhbmRhYmxlIGFuZCByZXBlYXRhYmxlLiAKClRoZSAnc3RhdHMnIHBhY2thZ2UgY29tZXMgc3RhbmRhcmQgd2l0aCBSIGRpc3RyaWJ1dGlvbnMgc28gd2UgZG8gbm90IG5lZWQgdG8gaW5zdGFsbCBpdCBvciBnbyB0byB0aGUgbGliYXJhcnkgdG8gImdldCIgaXQuIAoKU28gaWYgd2UgcnVuOgpgYGB7cn0KeCA9IHN0YXRzOjpydW5pZigxMCkKYGBgCldlIGFyZSB0ZWxsaW5nIHRoZSBmdW5jdGlvbiB0byBjcmVhdGUgMTAgcmFuZG9tIG51bWJlcnMgYmV0d2VlbiAwIGFuZCAxIGFuZCB0byBhc3NpZ24gdGhvc2UgbnVtYmVycyAoY2FsbGVkIGEgdmVjdG9yKSB0byB0aGUgdmFyaWFibGUgJ3gnLgoKYmFzZSBpbmRpY2F0ZXMgdGhpcyBpcyBhIGJhc2UgUiBmdW5jdGlvbiwgbm90IHBhcnQgb2YgYW55IHBhY2thZ2UKYGBge3J9CiMgY2FsY3VsYXRlIG1lYW4KYmFzZTo6bWVhbih4KQoKI2NhbGN1bGF0ZSBtZWRpYW4KYmFzZTo6bWVkaWFuKHgpCmBgYAoKMy4xLjIgRGVzY3JpYmluZyB0aGUgc3ByZWFkCgpOb3cgd2Ugd2lsbCByYW5kb21seSBnZW5lcmF0ZSBhIHZlY3RvciBvZiBudW1iZXJzIHVzaW5nIGBybm9ybSgpYApgYGB7cn0KP3Jub3JtCmBgYAoKcm5vcm0gY3JlYXRlcyBhIHZlY3RvciBvZiBudW1iZXJzIHdpdGggYSBub3JtYWwgZGlzdHJpYnV0aW9uIChzZWUgWzMuMS4yLjFdKGh0dHBzOi8vdGlueXVybC5jb20vNGN4eHd5YXApKQoKT25jZSBhZ2FpbiB0aGUgZG9jdW1lbnRhdGlvbiB0byB0aGUgbGVmdCBwcm92aWRlcyBpbmZvcm1hdGlvbiBhYm91dCB0aGUgYXJndW1lbnRzIHRoZSBmdW5jdGlvbiB3aWxsIHRha2UuCm4gPSBob3cgbWFueSBudW1iZXJzIGRvIHdlIHdhbnQgaW4gb3VyIGRpc3RyaWJ1dGlvbgptZWFuID0gd2hhdCBkbyB3ZSB3YW50IHRoZSBtZWFuIG9mIG91ciBkaXN0cmlidXRpb24gdG8gYmU/CnNkID0gd2hhdCBkb2Ugd2Ugd2FudCB0aGUgc3RhbmRhcmQgZGlzdHJpYnV0aW9uIHRvIGJlPwoKYGBge3J9CiNhc3NpZ24gYSB2ZWN0b3IgMjAgb2YgbnVtYmVycyB0aGF0IGFyZSBhIG5vcm1hbCBkaXN0cmlidXRpb24gd2l0aCBhIG1lYW4gb2YgNiBhbmQgYSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgMC43CnggPSBzdGF0czo6cm5vcm0oMjAsIG1lYW4gPSA2LCBzZCA9IDAuNykKCiNub3RlIHRoZSBmb2xsb3dpbmcgYXJlIGV4YWN0bHkgdGhlIHNhbWUgY29tbWFuZAojcmVtb3ZlIHdoaXRlIHNwYWNlIChlbnRpcmVseSBwcmVmZXJlbmNlLCBJIGZpbmQgd2hpdGUgc3BhY2UgbWFrZXMgY29kZSBtb3JlIHJlYWRhYmxlKQojeD1ybm9ybSgyMCxtZWFuPTYsc2Q9MC43KQoKI21lYW4gYW5kIHNkIGluZGljYXRlZCBieSB0aGVpciBwb3NpdGlvbnMgaW4gdGhlIGZ1bmN0aW9uLCBubyBuYW1lcyBuZWVkZWQKI3ggPSBybm9ybSgyMCwgNiwgMC43KQoKI2NhbGN1bGF0ZSBhbmQgb3V0cHV0IHRoZSB2YXJpYW5jZSBvZiAneCcKc3RhdHM6OnZhcih4KQoKI2NhbGN1bGF0ZSBhbmQgb3V0cHV0IHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgJ3gnCnN0YXRzOjpzZCh4KQpgYGAKClRvIGV2YWx1YXRlIHRoZSBpbmZsdWVjZSBvZiBbb3V0bGllcnNdKGh0dHBzOi8vdGlueXVybC5jb20vbXJ4ODJzemYpIGluIG91ciBkYXRhOgpgYGB7cn0KI2NhbGN1YXRlIHRoZSBpbnRlcnF1YXJ0aWxlIHJhbmdlCnN0YXRzOjpJUVIoeCkKCiNjYWxjdWxhdGUgdGhlIHF1YW50aWxlcyBvZiB0aGUgZGF0YQpzdGF0czo6cXVhbnRpbGUoeCkKYGBgCgpUaGVzZSBkYXRhIGFyZSB2ZXJ5IHVzZWZ1bCBidXQgY2FuIGJlIGRpZmZpY3VsdCB0byB1bmRlcnN0YW5kIHdpdGhvdXQgYSB2aXN1YWwuIFRvIHZpc3VhbGl6ZSB0aGUgZGF0YSB3ZSBjYW4gY3JlYXRlIGEgYm94cGxvdC4gR3JhcGhpY3MgaXMgYSBkZWZhdWx0IHBhY2thZ2UgZGlzdHJpYnV0aW9uIHdpdGggUiBzbyBubyBuZWVkIHRvIGluc3RhbGwgaXQgYW5kIGdvIGdldCBpdCBmcm9tIHRoZSBsaWJyYXJ5LiAKCk5vdGUgdGhhdCBtYW55IFIgdXNlcnMgc2hvcnRlbiBUUlVFIHRvIFQgYW5kIEZBTFNFIHRvIEYuIFdoaWxlIHRoaXMgaXMgY29tbW9uZSBwcmFjdGljZSBpdCByZWR1Y2VzIGNvZGUgcmVhZGFiaWxpdHkgYW5kIHBvdGVudGlhbGx5IHByb2R1Y2VzIHVuaW50ZW5kZWQgcmVzdWx0cy4gV2hhdCBpZiBhIHZhcmlhYmxlIGhhcyBiZWVuIGFzc2lnbmVkIHRvICdUJyBvciAnRic/CmBgYHtyfQojcGxvdCB0aGUgdmVjdG9yICd4JyBhcyBhIGJveHBsb3QgaG9yaXpvbnRhbGx5IHJhdGhlciB0aGFuIHZlcnRpY2FsbHkgKHZlcnRpY2FsIGlzIHRoZSBkZWZhdWx0KQpncmFwaGljczo6Ym94cGxvdCh4LCBob3Jpem9udGFsID0gVFJVRSkKYGBgCgpUcnkgdGhlIHNhbWUgcGxvdCB3aXRob3V0IGBob3Jpem9udGFsID0gVFJVRS5gIFdoYXQgaGFwcGVucz8KCkxvb2sgYmFjayBhdCBvciByZXJ1biBgc3RhdHM6OnF1YW50aWxlLmAgSG93IGRvIHRoZXNlIG51bWJlcnMgbWFwIHRvIHRoZSBib3ggcGxvdD8KCkNhbGN1bGF0ZSB0aGUgbWVhbiBhbmQgbWVkaWFuIGZvciAneCcgdG8gZGV0ZXJtaW5lIHdoYXQgdGhlIHNvbGlkIGxpbmUgb24gdGhlIHBsb3QgcmVwcmVzZW50cy4KCgoK</div>
+#simulate a sample with 50 numbers, a mean of 20, and a standard deviation of 5. Assign it to the variable &#39;sample1&#39;
+sample1 = stats::rnorm(50, 20, 5)</code></pre>
+<p>Now bootstrap resample (bootstraping): resample with replacement to estimate the precision of population parameter estimates.</p>
+<pre class="{r}"><code># do bootstrap resampling, sampling with replacement. Assign the results to the variable boot.means
+boot.means = mosaic::do(1000) * mosaic::mean(mosaic::resample(sample1))</code></pre>
+<p>The above will create a data frame in your environment that you can see on the top right -&gt;</p>
+<p>Note that there are 1000 observations, this is because we told the <code>do()</code> function to repeat 1000 times.<br />
+Now we get percentiles and plot. boot.means[,1] tells the function to calculate using all of the values in the first column. Synatax is [row,column].<br />
+p = is setting our percentiles to 2.5% and 97.5% (so outside of these percentiles is outside of 95%)</p>
+<pre class="{r}"><code>q = mosaic::quantile(boot.means[,1], p = c(0.025, 0.975))</code></pre>
+<p>Plot the histogram ?hist to view the arguments</p>
+<pre class="{r}"><code>graphics::hist(boot.means[,1], col = &quot;cornflowerblue&quot;, border = &quot;white&quot;, xlab = &quot;sample means&quot;)
+abline(v = c(q[1], q[2]), col = &quot;red&quot;)
+text(x = q[1], y = 200, round(q[1],3), adj = c(1,0))
+text(x = q[2], y = 200, round(q[2],3), adj = c(0,0))</code></pre>
+</div>
+</div>
+<div id="using-qnorm-to-calculate-z-scores" class="section level3">
+<h3>Using <code>qnorm</code> to calculate Z-scores</h3>
+<pre class="{r}"><code>alpha = 0.05
+sd = 5
+n = 50
+mean(sample1) + qnorm(c(alpha/2, 1-alpha/2)) * sd/sqrt(n)</code></pre>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiR2Vub21pY3Mgd2l0aCBSIDMuMSIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCgpFeHBsYW5hdGlvbnMgb2Ygc3RhdGlzdGljcyBhbmQgZXhlcmNpc2VzIHRha2VuIGZyb20gQ29tcHV0YXRpb25hbCBbR2Vub21pY3Mgd2l0aCBSXShodHRwczovL2NvbXBnZW5vbXIuZ2l0aHViLmlvL2Jvb2svKQoKVGhpcyBzZWN0aW9uIGJlZ2lucyB3aXRoIFszLjFdKGh0dHBzOi8vY29tcGdlbm9tci5naXRodWIuaW8vYm9vay9ob3ctdG8tc3VtbWFyaXplLWNvbGxlY3Rpb24tb2YtZGF0YS1wb2ludHMtdGhlLWlkZWEtYmVoaW5kLXN0YXRpc3RpY2FsLWRpc3RyaWJ1dGlvbnMuaHRtbCkKCiMjIyMgSGVyZSBJIHVzZSB0aGUgYHBhY2thZ2U6OmZ1bmN0aW9uKClgIHN0cnVjdHVyZS4gIApUaGlzIHByb3ZpZGVzIHlvdSB3aXRoIGluZm9ybWF0aW9uIGFib3V0IHdoaWNoIHBhY2thZ2UgZWFjaCBmdW5jdGlvbiBjb21lcyBmcm9tLiBJdCBtYWtlcyBjb2RlIG11Y2ggbW9yZSB1bmRlcnN0YW5kYWJsZSBhbmQgcmVwZWF0YWJsZS4KCiMjIyAzLjEuMQpfX19fX19fX19fX19fX19fX19fX18KIyMjIHJ1bmlmKCkKRmlyc3Qgd2UgYXNzaWduIHRoZSB2YXJpYWJsZSAneCcgdG8gdGhlIG91dHB1dCBvZiBydW5pZigxMCkKCkFueXRpbWUgeW91IHdhbnQgdG8ga25vdyBtb3JlIGFib3V0IGEgZnVuY3Rpb24gdXNlIHRoZSAnPycgYmVmb3JlIHRoZSBuYW1lIG9mIHRoZSBmdW5jdGlvbiBhcyBiZWxvdzoKYGBge3J9Cj9ydW5pZgpgYGAKCkluIHRoZSBwYW5lbCB0byB0aGUgcmlnaHQgLT4geW91IHdpbGwgc2VlIGluZm9ybWF0aW9uIGFib3V0IHRoaXMgZnVuY3Rpb24gYXBwZWFyLgoKX19fX19fX19fX19fCiMjIyMgUmVhZGluZyBEb2N1bWVudGF0aW9uCkVhY2ggZnVuY3Rpb24gaGVscCBwYWdlIGZvbGxvd3MgdGhlIHNhbWUgZm9ybWF0LiAKClRoZXkgc3RhcnQgd2l0aCBhIGJyaWVmIERFU0NSSVBUSU9OIG9mIHdoYXQgdGhlIHBhY2thZ2UgZG9lcy4KClVTQUdFIHNob3dzIHRoZSB2YXJpb3VzIGFyZ3VtZW50cyB5b3UgbmVlZCB0byBzcGVjaWZ5IHdoZW4gdXNpbmcgdGhlIGZ1bmN0aW9uIC0gc29tZSB3aWxsIGJlIGNvbXB1bHNvcnksIHNvbWUgd2lsbCBiZSBvcHRpb25hbC4KCkFSR1VNRU5UUyAtIHZlcnkgYnJpZWZseSBkZXNjcmliZXMgZWFjaCBvZiB0aGUgYXJndW1lbnRzIHRoYXQgeW91IG5lZWQgdG8gc3BlY2lmeS4KCkRFVEFJTFMgLSB2ZXJ5IHZhcmlhYmxlICAtIHRoZSBhdXRob3Igb2YgdGhlIGZ1bmN0aW9uIG9mdGVuIGdpdmVzIG1vcmUgZGV0YWlscyBhYm91dCB0aGUgZnVuY3Rpb24uCgpWQUxVRSAtIHRoaXMgdGVsbHMgeW91IHdoYXQgdGhlIG91dHB1dHMgb2YgdGhlIGZ1bmN0aW9uIHdpbGwgYmUuCgpBVVRIT1JTLCBSRUZFUkVOQ0VTIC0gc2VsZiBleHBsYW5hdG9yeQoKU0VFIEFMU08gLSBwb2ludHMgeW91IGluIHRoZSBkaXJlY3Rpb24gb2YgcmVsYXRlZCBmdW5jdGlvbnMKCkVYQU1QTEVTIC0gZ2l2ZXMgeW91IHNvbWUgY29kZSBzbmlwcGV0cyB0byBzaG93IHlvdSB0aGUgZnVuY3Rpb24gYmVpbmcgdXNlZCBpbiBwcmFjdGljZS4gKkkgZmluZCB0aGVzZSB0byBiZSB0aGUgbW9zdCBoZWxwZnVsIGFuZCBvZnRlbiBzY3JvbGwgaGVyZSBmaXJzdCoKClNvbWUgcGFja2FnZXMgd2lsbCBhbHNvIGhhdmUgInZpZ25ldHRlcyIsIHdoaWNoIGdpdmUgbW9yZSBkZXRhaWxlZCBkZXNjcmlwdGlvbnMgb2YgaG93IHRoZSBmdW5jdGlvbnMgd2l0aGluIGEgcGFja2FnZSBzaG91bGQgYmUgdXNlZC4KX19fX19fX18KClRoaXMgZG9jdW1lbnRhdGlvbiB0YWtlcyBzb21lIGdldHRpbmcgdXNlZCB0by4gSXQgaXMgb2Z0ZW4gaGVscGZ1bCB0byBnb29nbGUgJ3R1dG9yaWFscyBmdW5jdGlvbl9uYW1lJyBpZiB5b3UgYXJlIHN0cnVnZ2xpbmcuIFRoZXJlIHdpbGwgYmUgYSBsb3Qgb2YgZXhhbXBsZXMgb2YgaG93IHRvIHVzZSBpdC4gUGxheSB3aXRoIHRoZSBmdW5jdGlvbiBhbmQgc2VlIHdoYXQgaGFwcGVucy4gVGhpcyB3aWxsIGJlIHlvdXIgYmVzdCB0ZWFjaGVyLiAKCl9fX19fX19fCgpJbiB0aGUgYHJ1bmlmKClgIGRvY3VtZW50YXRpb24gdW5kZXIgdXNhZ2U6ICAKYHJ1bmlmKG4sIG1pbiA9IDAsIG1heCA9IDEpYC4gCm4gPSBob3cgbWFueSByYW5kb20gbnVtYmVycyB5b3Ugd2FudC4gCm1pbiA9IDA6IHRoZSBkZWZhdWx0IGxvd2VzdCBudW1iZXIgaXMgMC4gCm1heCA9IDE6IHRoZSBkZWZhdWx0IGhpZ2hlc3QgbnVtYmVyIGlzIDEuIAoKVGhpcyBpcyB1c2VmdWwgZm9yIHNpbXVsYXRpbmcgZGF0YS4gCgogCgpUaGUgYHN0YXRzYCBwYWNrYWdlIGNvbWVzIHN0YW5kYXJkIHdpdGggUiBkaXN0cmlidXRpb25zIHNvIHdlIGRvIG5vdCBuZWVkIHRvIGluc3RhbGwgaXQgb3IgZ28gdG8gdGhlIGxpYnJhcnkgdG8gImdldCIgaXQuIAoKU28gaWYgd2UgcnVuOgpgYGB7cn0KeCA9IHN0YXRzOjpydW5pZigxMCkKYGBgCldlIGFyZSB0ZWxsaW5nIHRoZSBmdW5jdGlvbiB0byBjcmVhdGUgMTAgcmFuZG9tIG51bWJlcnMgYmV0d2VlbiAwIGFuZCAxIGFuZCB0byBhc3NpZ24gdGhvc2UgbnVtYmVycyAoY2FsbGVkIGEgdmVjdG9yKSB0byB0aGUgdmFyaWFibGUgYHhgLgoKYGJhc2VgIGluZGljYXRlcyB0aGlzIGlzIGEgYmFzZSBSIGZ1bmN0aW9uLCBub3QgcGFydCBvZiBhbnkgcGFja2FnZQpgYGB7cn0KIyBjYWxjdWxhdGUgbWVhbgpiYXNlOjptZWFuKHgpCgojY2FsY3VsYXRlIG1lZGlhbgpiYXNlOjptZWRpYW4oeCkKYGBgCl9fX19fX19fX19fX19fX19fX19fX19fX19fX19fXwojIyMgMy4xLjIgRGVzY3JpYmluZyB0aGUgc3ByZWFkLiAKCiMjIyBybm9ybSgpCgpOb3cgd2Ugd2lsbCByYW5kb21seSBnZW5lcmF0ZSBhIHZlY3RvciBvZiBudW1iZXJzIHVzaW5nIGBybm9ybSgpYApgYGB7cn0KP3Jub3JtCmBgYAoKYHJub3JtKClgIGNyZWF0ZXMgYSB2ZWN0b3Igb2YgbnVtYmVycyB3aXRoIGEgbm9ybWFsIGRpc3RyaWJ1dGlvbiAoc2VlIFszLjEuMi4xXShodHRwczovL3Rpbnl1cmwuY29tLzRjeHh3eWFwKSkKCk9uY2UgYWdhaW4gdGhlIGRvY3VtZW50YXRpb24gdG8gdGhlIHJpZ2h0IC0+IHByb3ZpZGVzIGluZm9ybWF0aW9uIGFib3V0IHRoZSBhcmd1bWVudHMgdGhlIGZ1bmN0aW9uIHdpbGwgdGFrZS4gCm4gPSBob3cgbWFueSBudW1iZXJzIGRvIHdlIHdhbnQgaW4gb3VyIGRpc3RyaWJ1dGlvbi4gCm1lYW4gPSB3aGF0IGRvIHdlIHdhbnQgdGhlIG1lYW4gb2Ygb3VyIGRpc3RyaWJ1dGlvbiB0byBiZT8gIApzZCA9IHdoYXQgZG9lIHdlIHdhbnQgdGhlIHN0YW5kYXJkIGRpc3RyaWJ1dGlvbiB0byBiZT8gIAoKYGBge3J9CiNhc3NpZ24gYSB2ZWN0b3IgMjAgb2YgbnVtYmVycyB0aGF0IGFyZSBhIG5vcm1hbCBkaXN0cmlidXRpb24gd2l0aCBhIG1lYW4gb2YgNiBhbmQgYSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgMC43CnggPSBzdGF0czo6cm5vcm0oMjAsIG1lYW4gPSA2LCBzZCA9IDAuNykKCiNub3RlIHRoZSBmb2xsb3dpbmcgYXJlIGV4YWN0bHkgdGhlIHNhbWUgY29tbWFuZAojcmVtb3ZlIHdoaXRlIHNwYWNlIChlbnRpcmVseSBwcmVmZXJlbmNlLCBJIGZpbmQgd2hpdGUgc3BhY2UgbWFrZXMgY29kZSBtb3JlIHJlYWRhYmxlKQojeD1ybm9ybSgyMCxtZWFuPTYsc2Q9MC43KQoKI21lYW4gYW5kIHNkIGluZGljYXRlZCBieSB0aGVpciBwb3NpdGlvbnMgaW4gdGhlIGZ1bmN0aW9uLCBubyBuYW1lcyBuZWVkZWQKI3ggPSBybm9ybSgyMCwgNiwgMC43KQoKI2NhbGN1bGF0ZSBhbmQgb3V0cHV0IHRoZSB2YXJpYW5jZSBvZiAneCcKc3RhdHM6OnZhcih4KQoKI2NhbGN1bGF0ZSBhbmQgb3V0cHV0IHRoZSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgJ3gnCnN0YXRzOjpzZCh4KQpgYGAKClRvIGV2YWx1YXRlIHRoZSBpbmZsdWVuY2Ugb2YgW291dGxpZXJzXShodHRwczovL3Rpbnl1cmwuY29tL21yeDgyc3pmKSBpbiBvdXIgZGF0YToKYGBge3J9CiNjYWxjdWF0ZSB0aGUgaW50ZXJxdWFydGlsZSByYW5nZQpzdGF0czo6SVFSKHgpCgojY2FsY3VsYXRlIHRoZSBxdWFudGlsZXMgb2YgdGhlIGRhdGEKc3RhdHM6OnF1YW50aWxlKHgpCmBgYAoKVGhlc2UgZGF0YSBhcmUgdmVyeSB1c2VmdWwgYnV0IGNhbiBiZSBkaWZmaWN1bHQgdG8gdW5kZXJzdGFuZCB3aXRob3V0IGEgdmlzdWFsLiBUbyB2aXN1YWxpemUgdGhlIGRhdGEgd2UgY2FuIGNyZWF0ZSBhIGJveHBsb3QuIGBncmFwaGljc2AgaXMgYSBkZWZhdWx0IHBhY2thZ2UgZGlzdHJpYnV0aW9uIHdpdGggUiBzbyBubyBuZWVkIHRvIGluc3RhbGwgaXQgYW5kIGdvIGdldCBpdCBmcm9tIHRoZSBsaWJyYXJ5LiAKCk5vdGUgdGhhdCBtYW55IFIgdXNlcnMgc2hvcnRlbiBUUlVFIHRvIFQgYW5kIEZBTFNFIHRvIEYuIFdoaWxlIHRoaXMgaXMgY29tbW9uIHByYWN0aWNlIGl0IHJlZHVjZXMgY29kZSByZWFkYWJpbGl0eSBhbmQgcG90ZW50aWFsbHkgcHJvZHVjZXMgdW5pbnRlbmRlZCByZXN1bHRzLiBXaGF0IGlmIGEgdmFyaWFibGUgaGFzIGJlZW4gYXNzaWduZWQgdG8gJ1QnIG9yICdGJz8KYGBge3J9CiNwbG90IHRoZSB2ZWN0b3IgJ3gnIGFzIGEgYm94cGxvdCBob3Jpem9udGFsbHkgcmF0aGVyIHRoYW4gdmVydGljYWxseSAodmVydGljYWwgaXMgdGhlIGRlZmF1bHQpCmdyYXBoaWNzOjpib3hwbG90KHgsIGhvcml6b250YWwgPSBUUlVFKQpgYGAKClRyeSB0aGUgc2FtZSBwbG90IHdpdGhvdXQgYGhvcml6b250YWwgPSBUUlVFLmAgV2hhdCBoYXBwZW5zPwoKTG9vayBiYWNrIGF0IG9yIHJlcnVuIGBzdGF0czo6cXVhbnRpbGUuYCBIb3cgZG8gdGhlc2UgbnVtYmVycyBtYXAgdG8gdGhlIGJveCBwbG90PwoKQ2FsY3VsYXRlIHRoZSBtZWFuIGFuZCBtZWRpYW4gZm9yIGB4YCB0byBkZXRlcm1pbmUgd2hhdCB0aGUgc29saWQgbGluZSBvbiB0aGUgcGxvdCByZXByZXNlbnRzLgoKCiMjIyBbMy4xLjIgUHJlY2lzaW9uIG9mIGVzdGltYXRlczogQ29uZmlkZW5jZSBpbnRlcnZhbHNdKGh0dHBzOi8vdGlueXVybC5jb20vMnA5ZjZ0c2opLgoKTm93IHdlIHdpbGwgYmUgdXNpbmcgYSBwYWNrYWdlIHRoYXQgZG9lc24ndCBjb21lIHN0YW5kYXJkIHdpdGggUi4KCldlIG5lZWQgdG8gaW5zdGFsbCB0aGUgcGFja2FnZSBjYWxsZWQgYG1vc2FpY2AuCmBgYHtyfQppbnN0YWxsLnBhY2thZ2VzKCJtb3NhaWMiKQpgYGAKClRoZW4gd2UgZ28gdG8gb3VyIGxpYnJhcnkgd2hlcmUgcGFja2FnZXMgYXJlIHN0b3JlZCB0byAnY2hlY2tvdXQnIHRoZSBwYWNrYWdlLiBJIHRoaW5rIG9mIGl0IGxpa2UgZ29pbmcgdG8gdGhlIGxpYnJhcnkgdG8gY2hlY2sgb3V0IGEgYm9vay4gCmBgYHtyfQpsaWJyYXJ5KG1vc2FpYykKYGBgCiMjIyMgc2V0LnNlZWQoKS4gCk5vdyB3ZSBhcmUgZ29pbmcgdG8gdXNlIGEgZnVuY3Rpb24gY2FsbGVkIGBzZXQuc2VlZCgpYCB0byBtYWtlIG91ciBhbmFseXNpcyByZXBlYXRhYmxlLiBXZSBhcmUgZ29pbmcgdG8gYmUgdXNpbmcgcmFuZG9tbHkgZ2VuZXJhdGVkIG51bWJlcnMgZm9yIHRoZSBhbmFseXNpcy4gV2hlbiB3ZSBhc2sgUiB0byAnZ28gZ2V0JyBhIHNldCBvZiByYW5kb21seSBnZW5lcmF0ZWQgbnVtYmVycyBpdCBuZWVkcyB0byBrbm93IHdoZXJlIHRvIHN0YXJ0IGZyb20gaXRzIGxpc3Qgb2YgcmFuZG9tIG51bWJlcnMuIFRoZSBzdGFydGluZyBwb2ludCBpcyB0aGUgJ3NlZWQuJyBJZiB3ZSBkb24ndCBzZXQgdGhlIHNlZWQgdGhlbiBSIHVzZXMgdGhlIHNlc3Npb24gc3RhcnRpbmcgdGltZSAoaXQncyBjbG9jaykgdG8gZGV0ZXJtaW5lIHdoZXJlIHRvIHN0YXJ0IGluIHRoZSBsaXN0LiBUaGlzIG1ha2VzIHRoZSBhbmFseXNpcyBpbXBvc3NpYmxlIHRvIHJlcGVhdC4gVGhlcmVmb3JlLCB3ZSBzZXQgYSBzZWVkLiAKCmBgYHtyfQojc2V0IHRoZSBzZWVkIHRvIDIxCmJhc2U6OnNldC5zZWVkKDIxKQoKI3NpbXVsYXRlIGEgc2FtcGxlIHdpdGggNTAgbnVtYmVycywgYSBtZWFuIG9mIDIwLCBhbmQgYSBzdGFuZGFyZCBkZXZpYXRpb24gb2YgNS4gQXNzaWduIGl0IHRvIHRoZSB2YXJpYWJsZSAnc2FtcGxlMScKc2FtcGxlMSA9IHN0YXRzOjpybm9ybSg1MCwgMjAsIDUpCmBgYAoKCk5vdyBib290c3RyYXAgcmVzYW1wbGUgKGJvb3RzdHJhcGluZyk6IHJlc2FtcGxlIHdpdGggcmVwbGFjZW1lbnQgdG8gZXN0aW1hdGUgdGhlIHByZWNpc2lvbiBvZiBwb3B1bGF0aW9uIHBhcmFtZXRlciBlc3RpbWF0ZXMuCgpgYGB7cn0KIyBkbyBib290c3RyYXAgcmVzYW1wbGluZywgc2FtcGxpbmcgd2l0aCByZXBsYWNlbWVudC4gQXNzaWduIHRoZSByZXN1bHRzIHRvIHRoZSB2YXJpYWJsZSBib290Lm1lYW5zCmJvb3QubWVhbnMgPSBtb3NhaWM6OmRvKDEwMDApICogbW9zYWljOjptZWFuKG1vc2FpYzo6cmVzYW1wbGUoc2FtcGxlMSkpCmBgYAoKVGhlIGFib3ZlIHdpbGwgY3JlYXRlIGEgZGF0YSBmcmFtZSBpbiB5b3VyIGVudmlyb25tZW50IHRoYXQgeW91IGNhbiBzZWUgb24gdGhlIHRvcCByaWdodCAtPgoKTm90ZSB0aGF0IHRoZXJlIGFyZSAxMDAwIG9ic2VydmF0aW9ucywgdGhpcyBpcyBiZWNhdXNlIHdlIHRvbGQgdGhlIGBkbygpYCBmdW5jdGlvbiB0byByZXBlYXQgMTAwMCB0aW1lcy4gIApOb3cgd2UgZ2V0IHBlcmNlbnRpbGVzIGFuZCBwbG90LiAKYm9vdC5tZWFuc1ssMV0gdGVsbHMgdGhlIGZ1bmN0aW9uIHRvIGNhbGN1bGF0ZSB1c2luZyBhbGwgb2YgdGhlIHZhbHVlcyBpbiB0aGUgZmlyc3QgY29sdW1uLiBTeW5hdGF4IGlzIFtyb3csY29sdW1uXS4gIApwID0gaXMgc2V0dGluZyBvdXIgcGVyY2VudGlsZXMgdG8gMi41JSBhbmQgOTcuNSUgKHNvIG91dHNpZGUgb2YgdGhlc2UgcGVyY2VudGlsZXMgaXMgb3V0c2lkZSBvZiA5NSUpCgpgYGB7cn0KcSA9IG1vc2FpYzo6cXVhbnRpbGUoYm9vdC5tZWFuc1ssMV0sIHAgPSBjKDAuMDI1LCAwLjk3NSkpCmBgYAoKUGxvdCB0aGUgaGlzdG9ncmFtCj9oaXN0IHRvIHZpZXcgdGhlIGFyZ3VtZW50cwpgYGB7cn0KZ3JhcGhpY3M6Omhpc3QoYm9vdC5tZWFuc1ssMV0sIGNvbCA9ICJjb3JuZmxvd2VyYmx1ZSIsIGJvcmRlciA9ICJ3aGl0ZSIsIHhsYWIgPSAic2FtcGxlIG1lYW5zIikKYWJsaW5lKHYgPSBjKHFbMV0sIHFbMl0pLCBjb2wgPSAicmVkIikKdGV4dCh4ID0gcVsxXSwgeSA9IDIwMCwgcm91bmQocVsxXSwzKSwgYWRqID0gYygxLDApKQp0ZXh0KHggPSBxWzJdLCB5ID0gMjAwLCByb3VuZChxWzJdLDMpLCBhZGogPSBjKDAsMCkpCmBgYAojIyMgVXNpbmcgYHFub3JtYCB0byBjYWxjdWxhdGUgWi1zY29yZXMKCmBgYHtyfQphbHBoYSA9IDAuMDUKc2QgPSA1Cm4gPSA1MAptZWFuKHNhbXBsZTEpICsgcW5vcm0oYyhhbHBoYS8yLCAxLWFscGhhLzIpKSAqIHNkL3NxcnQobikKYGBgCgoK</div>
 
 
 
