@@ -79,7 +79,7 @@ We are telling the function to create 10 random numbers between 0 and 1 and to a
 base::mean(x)
 
 #calculate median
-base::median(x)
+stats::median(x)
 ```
 ______________________________
 ### 3.1.2 Describing the spread. 
@@ -230,7 +230,7 @@ gene.df = base::data.frame(exp = base::c(gene1, gene2),
 to produce exp.null we use the gene.df data frame but 'shuffle' which values are paired with which group and replicates 1000 times.
 ```{r}
 #
-exp.null <- mosaic::do(1000) * mosaic::diff(mosaic::mean(exp ~ mosaic::shuffle(group), data = gene.df))
+exp.null <- mosaic::do(1000) * base::diff(mosaic::mean(exp ~ mosaic::shuffle(group), data = gene.df))
                                                  
 ```
 Create a histogram of the randomly distributed values (if the null hypothesis is correct) using the first column of the data frame 'exp.null' (where the values are stored).  
@@ -262,6 +262,7 @@ No R explanations required in this section
 
 ### [3.2.3 Multiple testing correction](https://compgenomr.github.io/book/how-to-test-for-differences-between-samples.html#multiple-testing-correction)
 
+Forthcoming
 
 
 
