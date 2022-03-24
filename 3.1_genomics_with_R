@@ -262,7 +262,87 @@ No R explanations required in this section
 
 ### [3.2.3 Multiple testing correction](https://compgenomr.github.io/book/how-to-test-for-differences-between-samples.html#multiple-testing-correction)
 
-Forthcoming
+Below we will use a new package, qvalue. This package is a bioconductor package so we install it differently. 
+```{r}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
 
+BiocManager::install("Biobase")
+```
+In the console below, you may be asked: 
+Update all/some/none? [a/s/n]: 
+
+type 'a', then 'enter'
+
+Now install the package 'qvalue'
+```{r}
+BiocManager::install("qvalue")
+```
+
+And go to the library to get it for use in this session
+```{r}
+library(qvalue)
+```
+
+Load the data from a breast cancer gene expression study, stored in the package qvalue, for use
+
+References for these data:
+Hedenfalk I et al. (2001). Gene expression profiles in hereditary breast cancer. New England Journal of Medicine, 344: 539-548.
+Storey JD and Tibshirani R. (2003). Statistical significance for genome-wide studies. Proceedings of the National Academy of Sciences, 100: 9440-9445. http://www.pnas.org/content/100/16/9440.full
+
+The `hedenfalk` data set was imported with the `qvalue` package. We load it into our environment with the `data` command. To learn more about any of these `?what_you_want_to_learn_about` in the console. 
+```{r}
+data(hedenfalk)
+```
+
+use the `qvalue` function to calculate the qvalues from the vecor of pvalues `p` provided in the dataset `hedenfalk` then extract only qvalues from the list that the `qvalue` function produces. 
+
+The book instructions look like this `qvalues <- qvalue(hedenfalk$p)$q`
+The `$` usually means we are subsetting something. 
+
+On the right -> under the Environment tab/Data click on the dataset `hedenfalk`. There are three parts to this list 'p' 'stat' 'stat0'. We are only interested in 'p'.
+
+The way R stores these data are with the `$`. To tell R we only want the information in 'p' we use: `hedenfalk$p`
+
+The `hedenfalk` dataset doesn't have a 'q'. Where does the $q come from? 
+
+Tye `qvalue(hedenfalk$p)` into the console. Scroll through the output.
+
+Now you are seeing these data how R 'sees' it. You can see that there is no `$q`. There is `$qvalue`.
+
+Play with what results you get from the following commands in the console:
+
+`qvalue(p = hedenfalk$p)$p`
+`qvalue(p = hedenfalk$p)$l`
+`qvalue(p = hedenfalk$p)$la`
+`qvalue(p = hedenfalk$p)$q`
+
+Why do some return data but others return 'null'?
+
+How does the data returned by `qvalue(p = hedenfalk$p)$q` compare to `qvalues` produced below? 
+```{r}
+qvalues <- qvalue(hedenfalk$p)$q
+```
+
+The book likely used 'q' to avoid confusion with the command `qvalue` or the new object the instructions ask you to created in the code block above. Ultimately, I find this confusing because it makes figuring out what each component of a command do and where they come from. I would advise instead something like:
+
+```{r}
+qresult <- qvalue(hedenfalk$p)$qvalue
+```
+
+Now we test the correction methods
+
+Note that the book uses the `=` assignment operator here but the `<-` assignment operator elsewhere. I find this confusing so have converted all to `<-` (read more about operators [here](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/Syntax))
+```{r}
+bonf.pval <- p.adjust(hedenfalk$p,method ="bonferroni")
+fdr.adj.pval <- p.adjust(hedenfalk$p,method ="fdr")
+```
+
+```{r}
+plot(hedenfalk$p, qresult, pch=19, ylim=c(0,1), xlab="raw P-values", ylab="adjusted P-values")
+points(hedenfalk$p, bonf.pval, pch=19, col="red")
+points(hedenfalk$p, fdr.adj.pval, pch=19, col="blue")
+legend("bottomright", legend=c("q-value","FDR (BH)" ,"Bonferroni"), fill=c("black","blue","red"))
+```
 
 

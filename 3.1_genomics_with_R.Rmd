@@ -2,25 +2,34 @@
 title: "Genomics with R 3.1"
 output: html_notebook
 ---
+This document is an extension and explanation of the *R exercises* in the book [Genomics with R](https://compgenomr.github.io/book/) for Dr. Wiggins' Introductory Genomics course at Oklahoma State University.
 
+The [Genomics with R](https://compgenomr.github.io/book/) book contains critical information, explains the statistics used, and provides the exercises.
 
+This document is intended as a companion to the [Genomics with R](https://compgenomr.github.io/book/) book for students who are R beginners. 
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+These instructions are for RStudio. 
+In this course we are running RStudio through the Cyverse platform
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
-
-Explainations of statistics and exercises taken from Computational [Genomics with R](https://compgenomr.github.io/book/)
 This section begins with [3.1](https://compgenomr.github.io/book/how-to-summarize-collection-of-data-points-the-idea-behind-statistical-distributions.html)
 
-In this section we assign the variable 'x' to the output of runif(10)
+#### Here I use the `package::function()` structure.  
+This provides you with information about which package each function comes from. It makes code much more understandable and repeatable.
 
-anytime you want to know more about a function use the '?' before the name of the function as below:
+### [3.1.1: Describing the central tendency](https://compgenomr.github.io/book/how-to-summarize-collection-of-data-points-the-idea-behind-statistical-distributions.html#describing-the-central-tendency-mean-and-median)
+_____________________
+### runif()
+First we assign the variable 'x' to the output of runif(10)
+
+Anytime you want to know more about a function use the '?' before the name of the function as below:
 ```{r}
 ?runif
 ```
 
-In the panel to the right you will see information about this function appear. 
-______
+In the panel to the right -> you will see information about this function appear.
+
+____________
+#### Reading Documentation
 Each function help page follows the same format. 
 
 They start with a brief DESCRIPTION of what the package does.
@@ -37,33 +46,34 @@ AUTHORS, REFERENCES - self explanatory
 
 SEE ALSO - points you in the direction of related functions
 
-EXAMPLES - gives you some code snippets to show you the function being used in practise. *I find these to be the most helpul and often scroll here first*
+EXAMPLES - gives you some code snippets to show you the function being used in practice. *I find these to be the most helpful and often scroll here first*
 
 Some packages will also have "vignettes", which give more detailed descriptions of how the functions within a package should be used.
 ________
+
 This documentation takes some getting used to. It is often helpful to google 'tutorials function_name' if you are struggling. There will be a lot of examples of how to use it. Play with the function and see what happens. This will be your best teacher. 
 
 ________
 
-In the `runif()` documentation under usage:
-runif(n, min = 0, max = 1)
-n = how many randome numbers you want
-min = 0: the defalut lowest number is 0
-max = 1: the default hightest number is 1
+In the `runif()` documentation under usage:  
+`runif(n, min = 0, max = 1)`. 
+n = how many random numbers you want. 
+min = 0: the default lowest number is 0. 
+max = 1: the default highest number is 1. 
 
 This is useful for simulating data. 
 
-Here I use the package::function() structure. This provides you with information about which package each function comes from. It makes code much more understandable and repeatable. 
+ 
 
-The 'stats' package comes standard with R distributions so we do not need to install it or go to the libarary to "get" it. 
+The `stats` package comes standard with R distributions so we do not need to install it or go to the library to "get" it. 
 
 So if we run:
 ```{r}
 x = stats::runif(10)
 ```
-We are telling the function to create 10 random numbers between 0 and 1 and to assign those numbers (called a vector) to the variable 'x'.
+We are telling the function to create 10 random numbers between 0 and 1 and to assign those numbers (called a vector) to the variable `x`.
 
-base indicates this is a base R function, not part of any package
+`base` indicates this is a base R function, not part of any package
 ```{r}
 # calculate mean
 base::mean(x)
@@ -71,20 +81,22 @@ base::mean(x)
 #calculate median
 stats::median(x)
 ```
+______________________________
+### 3.1.2 Describing the spread. 
 
-3.1.2 Describing the spread
+### rnorm()
 
 Now we will randomly generate a vector of numbers using `rnorm()`
 ```{r}
 ?rnorm
 ```
 
-rnorm creates a vector of numbers with a normal distribution (see [3.1.2.1](https://tinyurl.com/4cxxwyap))
+`rnorm()` creates a vector of numbers with a normal distribution (see [3.1.2.1](https://tinyurl.com/4cxxwyap))
 
-Once again the documentation to the left provides information about the arguments the function will take.
-n = how many numbers do we want in our distribution
-mean = what do we want the mean of our distribution to be?
-sd = what doe we want the standard distribution to be?
+Once again the documentation to the right -> provides information about the arguments the function will take. 
+n = how many numbers do we want in our distribution. 
+mean = what do we want the mean of our distribution to be?  
+sd = what doe we want the standard distribution to be?  
 
 ```{r}
 #assign a vector 20 of numbers that are a normal distribution with a mean of 6 and a standard deviation of 0.7
@@ -104,7 +116,7 @@ stats::var(x)
 stats::sd(x)
 ```
 
-To evaluate the influece of [outliers](https://tinyurl.com/mrx82szf) in our data:
+To evaluate the influence of [outliers](https://tinyurl.com/mrx82szf) in our data:
 ```{r}
 #calcuate the interquartile range
 stats::IQR(x)
@@ -113,9 +125,9 @@ stats::IQR(x)
 stats::quantile(x)
 ```
 
-These data are very useful but can be difficult to understand without a visual. To visualize the data we can create a boxplot. Graphics is a default package distribution with R so no need to install it and go get it from the library. 
+These data are very useful but can be difficult to understand without a visual. To visualize the data we can create a boxplot. `graphics` is a default package distribution with R so no need to install it and go get it from the library. 
 
-Note that many R users shorten TRUE to T and FALSE to F. While this is commone practice it reduces code readability and potentially produces unintended results. What if a variable has been assigned to 'T' or 'F'?
+Note that many R users shorten TRUE to T and FALSE to F. While this is common practice it reduces code readability and potentially produces unintended results. What if a variable has been assigned to 'T' or 'F'?
 ```{r}
 #plot the vector 'x' as a boxplot horizontally rather than vertically (vertical is the default)
 graphics::boxplot(x, horizontal = TRUE)
@@ -125,7 +137,212 @@ Try the same plot without `horizontal = TRUE.` What happens?
 
 Look back at or rerun `stats::quantile.` How do these numbers map to the box plot?
 
-Calculate the mean and median for 'x' to determine what the solid line on the plot represents.
+Calculate the mean and median for `x` to determine what the solid line on the plot represents.
 
+
+### [3.1.2 Precision of estimates: Confidence intervals](https://tinyurl.com/2p9f6tsj)
+
+Now we will be using a package that doesn't come standard with R.
+
+We need to install the package called `mosaic`.
+```{r}
+install.packages("mosaic")
+```
+
+Then we go to our library where packages are stored to 'checkout' the package. I think of it like going to the library to check out a book. 
+```{r}
+library(mosaic)
+```
+#### set.seed() 
+We use a function called `set.seed()` to make our analysis repeatable. We will use randomly generated numbers for the analysis. When we ask R to 'go get' a set of randomly generated numbers it needs to know where to start in its list of random numbers. The starting point is the 'seed.' If we don't set the seed then R uses the session starting time (it's clock) to determine where to start in the list. This makes the analysis impossible to repeat. Therefore, we set a seed. 
+
+```{r}
+#set the seed to 21
+base::set.seed(21)
+
+#simulate a sample with 50 numbers, a mean of 20, and a standard deviation of 5. Assign it to the variable 'sample1'
+sample1 = stats::rnorm(50, 20, 5)
+```
+
+
+Now bootstrap resample (bootstraping): resample with replacement to estimate the precision of population parameter estimates.
+
+```{r}
+# do bootstrap resampling, sampling with replacement. Assign the results to the variable boot.means
+boot.means = mosaic::do(1000) * mosaic::mean(mosaic::resample(sample1))
+```
+
+The above will create a data frame in your environment that you can see on the top right ->
+
+Note that there are 1000 observations, this is because we told the `do()` function to repeat 1000 times.    
+Get percentiles and plot.  
+
+boot.means[,1] tells the function to calculate using all of the values in the first column. The synatax is [row,column].  
+
+p = is setting our percentiles to 2.5% and 97.5% (outside of these percentiles is outside of 95%)
+
+to learn about `c` use ?c
+```{r}
+q = mosaic::quantile(boot.means[,1], p = base::c(0.025, 0.975))
+```
+
+Plot the histogram. 
+?hist to view the arguments
+```{r}
+graphics::hist(boot.means[,1], col = "cornflowerblue", border = "white", xlab = "sample means")
+graphics::abline(v = c(q[1], q[2]), col = "red")
+graphics::text(x = q[1], y = 200, round(q[1],3), adj = base::c(1,0))
+graphics::text(x = q[2], y = 200, round(q[2],3), adj = base::c(0,0))
+```
+### Using `qnorm` to calculate Z-scores
+
+```{r}
+alpha = 0.05
+sd = 5
+n = 50
+base::mean(sample1) + stats::qnorm(c(alpha/2, 1-alpha/2)) * sd/sqrt(n)
+```
+
+### [3.2.1 Randomization-based testing for difference of the means](https://compgenomr.github.io/book/how-to-test-for-differences-between-samples.html#randomization-based-testing-for-difference-of-the-means)
+
+for explanations of `set.seed()` and `rnorm()` see above (hint: ctrl + F will bring up a search bar to search the document for these functions)
+
+Below we are creating variables called 'gene1', 'gene2', 'org.diff', and 'gene.df'.  
+'gene1' & 'gene2' are representing data collected under different conditions.   
+
+to learn about `data.frame` and `rep` use ?data.frame and ?rep
+```{r}
+#set the seed to 100
+base::set.seed(100)
+
+#simulate gene expression measurements obtained under different conditions
+gene1 = stats::rnorm(30, mean=4, sd=2)
+gene2 = stats::rnorm(30, mean=2, sd=2)
+
+#calculate differences in means
+org.diff = base::mean(gene1) - base::mean(gene2)
+
+#create a data frame with values in column 1 and the labels 'test' and 'control' in column 2 corresponding to gene1 (the gene we are calling 'test') and gene2 (the gene we are calling 'control')
+gene.df = base::data.frame(exp = base::c(gene1, gene2),
+                  group = c(base::rep("test", 30), base::rep("control", 30)))
+```
+
+to produce exp.null we use the gene.df data frame but 'shuffle' which values are paired with which group and replicates 1000 times.
+```{r}
+#
+exp.null <- mosaic::do(1000) * base::diff(mosaic::mean(exp ~ mosaic::shuffle(group), data = gene.df))
+                                                 
+```
+Create a histogram of the randomly distributed values (if the null hypothesis is correct) using the first column of the data frame 'exp.null' (where the values are stored).  
+use ?hist to explore the arguments below
+```{r}
+hist(exp.null[,1], xlab="null distribution | no difference in samples", main = expression(paste(H[0], ":no difference in means")), xlim = c(-2, 2), col="cornflowerblue", border="white")
+
+#add a red line to indicate the location of the 95% percentile
+graphics::abline(v = mosaic::quantile(exp.null[, 1], 0.95), col = "red" )
+
+#add a blue line to indicate the original difference in means between sample groups
+graphics::abline(v = org.diff, col = "blue" )
+
+#add a red label '0.05' to the red line at the level of 200 on the y-axis (corresponds to a p-value of 0.05)
+graphics::text(x = mosaic::quantile(exp.null[, 1], 0.95), y = 200,"0.05", adj = c(1, 0), col="red")
+
+#add a blue label 'org. diff.' to the blue line at the level of 200 on the y-axis
+graphics::text(x = org.diff, y = 200,"org. diff.", adj = c(1, 0), col = "blue")
+```
+
+Calculate the p-value of the difference between the randomly produced null data set and the original data set.
+```{r}
+p.val = base::sum(exp.null[, 1] > org.diff) / base::length(exp.null[, 1])
+p.val 
+```
+
+### [3.2.2 Using t-test for difference of the means between two samples](https://compgenomr.github.io/book/how-to-test-for-differences-between-samples.html#using-t-test-for-difference-of-the-means-between-two-samples)
+No R explanations required in this section
+
+### [3.2.3 Multiple testing correction](https://compgenomr.github.io/book/how-to-test-for-differences-between-samples.html#multiple-testing-correction)
+
+Below we will use a new package, qvalue. This package is a bioconductor package so we install it differently. 
+```{r}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("Biobase")
+```
+In the console below, you may be asked: 
+Update all/some/none? [a/s/n]: 
+
+type 'a', then 'enter'
+
+Now install the package 'qvalue'
+```{r}
+BiocManager::install("qvalue")
+```
+
+And go to the library to get it for use in this session
+```{r}
+library(qvalue)
+```
+
+Load the data from a breast cancer gene expression study, stored in the package qvalue, for use
+
+References for these data:
+Hedenfalk I et al. (2001). Gene expression profiles in hereditary breast cancer. New England Journal of Medicine, 344: 539-548.
+Storey JD and Tibshirani R. (2003). Statistical significance for genome-wide studies. Proceedings of the National Academy of Sciences, 100: 9440-9445. http://www.pnas.org/content/100/16/9440.full
+
+The `hedenfalk` data set was imported with the `qvalue` package. We load it into our environment with the `data` command. To learn more about any of these `?what_you_want_to_learn_about` in the console. 
+```{r}
+data(hedenfalk)
+```
+
+use the `qvalue` function to calculate the qvalues from the vecor of pvalues `p` provided in the dataset `hedenfalk` then extract only qvalues from the list that the `qvalue` function produces. 
+
+The book instructions look like this `qvalues <- qvalue(hedenfalk$p)$q`
+The `$` usually means we are subsetting something. 
+
+On the right -> under the Environment tab/Data click on the dataset `hedenfalk`. There are three parts to this list 'p' 'stat' 'stat0'. We are only interested in 'p'.
+
+The way R stores these data are with the `$`. To tell R we only want the information in 'p' we use: `hedenfalk$p`
+
+The `hedenfalk` dataset doesn't have a 'q'. Where does the $q come from? 
+
+Tye `qvalue(hedenfalk$p)` into the console. Scroll through the output.
+
+Now you are seeing these data how R 'sees' it. You can see that there is no `$q`. There is `$qvalue`.
+
+Play with what results you get from the following commands in the console:
+
+`qvalue(p = hedenfalk$p)$p`
+`qvalue(p = hedenfalk$p)$l`
+`qvalue(p = hedenfalk$p)$la`
+`qvalue(p = hedenfalk$p)$q`
+
+Why do some return data but others return 'null'?
+
+How does the data returned by `qvalue(p = hedenfalk$p)$q` compare to `qvalues` produced below? 
+```{r}
+qvalues <- qvalue(hedenfalk$p)$q
+```
+
+The book likely used 'q' to avoid confusion with the command `qvalue` or the new object the instructions ask you to created in the code block above. Ultimately, I find this confusing because it makes figuring out what each component of a command do and where they come from. I would advise instead something like:
+
+```{r}
+qresult <- qvalue(hedenfalk$p)$qvalue
+```
+
+Now we test the correction methods
+
+Note that the book uses the `=` assignment operator here but the `<-` assignment operator elsewhere. I find this confusing so have converted all to `<-` (read more about operators [here](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/Syntax))
+```{r}
+bonf.pval <- p.adjust(hedenfalk$p,method ="bonferroni")
+fdr.adj.pval <- p.adjust(hedenfalk$p,method ="fdr")
+```
+
+```{r}
+plot(hedenfalk$p, qresult, pch=19, ylim=c(0,1), xlab="raw P-values", ylab="adjusted P-values")
+points(hedenfalk$p, bonf.pval, pch=19, col="red")
+points(hedenfalk$p, fdr.adj.pval, pch=19, col="blue")
+legend("bottomright", legend=c("q-value","FDR (BH)" ,"Bonferroni"), fill=c("black","blue","red"))
+```
 
 
