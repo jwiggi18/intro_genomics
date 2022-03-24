@@ -1,0 +1,85 @@
+---
+title: "4_genomics_with_R"
+output: html_document
+---
+
+This document is an extension and explanation of the *R exercises* in the book [Genomics with R](https://compgenomr.github.io/book/) for Dr. Wiggins' Introductory Genomics course at Oklahoma State University.
+
+The [Genomics with R](https://compgenomr.github.io/book/) book contains critical information, explains the statistics used, and provides the exercises.
+
+This document is intended as a companion to the [Genomics with R](https://compgenomr.github.io/book/) book for students who are R beginners. 
+
+These instructions are for RStudio. 
+In this course we are running RStudio through the Cyverse platform
+
+This section begins with [4.1 Clustering: Grouping samples based on their similarity] (https://compgenomr.github.io/book/clustering-grouping-samples-based-on-their-similarity.html#:~:text=Computational%20Genomics%20with%20R-,4.1%20Clustering%3A%20Grouping%20samples%20based%20on%20their%20similarity,-In%20genomics%2C%20we)
+
+#### Here I use the `package::function()` structure  
+except in the case of `base` and `utils` commands. This provides you with information about which package each function comes from. It makes code much more understandable and repeatable.
+
+4.1.1 Distance metrics
+
+In this section we use a data frame of patient gene expressions but how to create this table is not explained. Also, the data frame is called `df` this is problemmatic because tehre is a base R function `df` (the density of the F distribution). We will do the following
+
+Name the data frame `exdf` for (gene)'expression data frame.'
+
+create the data frame with the following code.
+`data.frame` is the command that tells R what to do with what you put in the parentheses next.
+'Patient', 'IRX4', 'OCT4', and 'PAX6' are the column names
+the information inside `c()` is what will go in the rows
+```{r}
+exdf <- data.frame(Patient <- c("Patient1", "Patient2", "Patient3", "Patient4"), IRX4 <- c(11, 13, 2, 1), OCT4 <- c(10, 13, 4, 3), PAX6 <- c(1, 3, 10, 9))
+```
+
+look at the data frame
+```{r}
+View(exdf)
+```
+Notice to the left <- of "Patient 1, Patient 2" etc are numbers. In R these are what is called the index. 
+
+We need to make the Patient designations the index.
+```{r}
+exdf2 <- exdf[-1]
+row.names(exdf2) <- exdf$Patient
+```
+
+```{r}
+View(exdf2)
+```
+Now the patien ID's are the index
+
+
+Calcluate the distance metrics
+```{r}
+stats::dist(exdf2, method = "manhattan")
+```
+
+```{r}
+stats::dist(exdf2, method = "euclidean")
+```
+
+the correlation distance
+```{r}
+as.dist(1-cor(t(exdf2)))
+```
+4.1.1.1 Scaling before calculating the distance
+
+The book scales the data frame directly. This reduces the number of variables you have floating around in your environment but sometimes it might be worth it to create a new object so you don't overwrite your data frame, in case you need to return to it later. Above, were I working with these data and not demonstrating I would have overwritten `exdf` rather than creating `exdf2` but I wanted both available for comparison. 
+
+```{r}
+scaled_exdf2 <- scale(exdf2)
+```
+
+to view the distance matrix of the scaled data frame
+```{r}
+#create an object to hold the scaled distance matrix
+d <- stats::dist(scaled_exdf2)
+
+#do hierarchical clustering
+hc <- stats::hclust(d, method = "complete")
+
+#plot the results
+plot(hc)
+
+```
+
