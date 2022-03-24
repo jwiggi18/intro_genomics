@@ -12,7 +12,7 @@ This document is intended as a companion to the [Genomics with R](https://compge
 These instructions are for RStudio. 
 In this course we are running RStudio through the Cyverse platform
 
-This section begins with [4.1 Clustering: Grouping samples based on their similarity] (https://compgenomr.github.io/book/clustering-grouping-samples-based-on-their-similarity.html#:~:text=Computational%20Genomics%20with%20R-,4.1%20Clustering%3A%20Grouping%20samples%20based%20on%20their%20similarity,-In%20genomics%2C%20we)
+This section begins with [4.1 Clustering: Grouping samples based on their similarity](https://compgenomr.github.io/book/clustering-grouping-samples-based-on-their-similarity.html#:~:text=Computational%20Genomics%20with%20R-,4.1%20Clustering%3A%20Grouping%20samples%20based%20on%20their%20similarity,-In%20genomics%2C%20we)
 
 #### Here I use the `package::function()` structure  
 except in the case of `base` and `utils` commands. This provides you with information about which package each function comes from. It makes code much more understandable and repeatable.
