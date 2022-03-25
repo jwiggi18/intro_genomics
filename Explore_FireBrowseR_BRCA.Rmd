@@ -1,0 +1,166 @@
+---
+title: "Explore_FireBrowseR_BRCA"
+output: html_document
+---
+
+This document follows the [FireBrowseR breast cancer mRNA expression example](https://rdrr.io/github/mariodeng/FirebrowseR/f/vignettes/FirebrowseR.Rmd#:~:text=Example%2C%20Breast%20Cancer%20mRNA%20expression)
+
+These instructions are for RStudio. 
+In this course we are running RStudio through the Cyverse platform
+
+
+#### Here I use the `package::function()` structure  
+except in the case of `base` and `utils` commands. This provides you with information about which package each function comes from. It makes code much more understandable and repeatable.
+
+## R packages needed for downloading and analyzing GDAC firehose cancer data
+## Package information:
+
+FirebrowsR: https://rdrr.io/github/mariodeng/FirebrowseR/f/vignettes/FirebrowseR.Rmd
+
+Install necessary packages for investigating cancer data stored in the GDAC firehose archive and for data visualization
+```{r}
+if (!require("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("Biobase")
+
+install.packages("librarian")
+librarian::shelf(devtools, mariodeng/FirebrowseR, ggplot2)
+```
+In the console you may be asked if you want to update packages, type 'a'
+
+Following the FirebrowsR example (from the website above)
+
+##Investigate Breast Cancer and mRNA expression
+Look at the data in the browser:
+Navigate to firebrows.org in your browser
+In the 'Select cohort' drop down menu select the option that contains the word 'breast'
+Notice that the cohort associated with 'breast' is 'Breast invasive carcinoma (BRCA)'
+
+Retrieve the data in R:
+The method `Metadata.Cohorts` returns all cohort identifiers and their corresponding description. We store these data in `cohorts`. 
+Within the `cohorts` we search for (`grep`) "breast", yielding to the identifier for breast cancer.
+note: `grep` is a 'shell' command, not an R-specific command
+```{r}
+cohorts = FirebrowsR::Metadata.Cohorts(format = "csv") # Download all available cohorts
+cancer.Type = cohorts[grep("breast", cohorts$description, ignore.case = T), 1]
+print(cancer.Type)
+```
+
+The return gives us the identifier for breast cancer in this cohort and is the same as the identifier in the browser.
+
+Now, retrieve a list of 'BRCA' patients and store the list in `brca.Pats`
+`?Samples.Clinical` to learn more about the command used here
+Then we check how many rows and columns of data are stored in `brca.Pats`
+```{r}
+brca.Pats = FirebrowseR::Samples.Clinical(cohort = cancer.Type, format="tsv")
+#use base R command `dim` to retrieve the dimensions of `brca.Pats`
+dim(brca.Pats)
+```
+This output means we retrieved data with 150 rows and 111 columns. The rows correspond to patient identifiers. (as in the Ch 4 table we created)
+
+Scroll to the bottom of the page you opened in your browser that presents the 'BRCA' data. 
+What number is displayed in the 'clinical' bar? This is how many records we need to pull.
+
+Our R call only returned the first 'page' of cases (150). We need to retrieve them all. 
+Use the following
+```{r}
+#create `all.Received` and set it to `False` (note the example at Firebrowse R uses the `F` shorthand, we will speall it out to ensure clarity)
+all.Received = FALSE
+#start at page 1
+page.Counter = 1
+#the pages have 150 records
+page.size = 150
+#make an empty list
+brca.Pats = list()
+#as long as all.Recieved continues to be False keep iterating over the pages and storing the results in the brca.Pats list
+while(all.Received == FALSE){
+  brca.Pats[[page.Counter]] = Samples.Clinical(format = "csv",
+                                               cohort = cancer.Type,
+                                               page_size = page.size,
+                                               page = page.Counter)
+  #use the column names from the first page because subsequent pages don't have col names
+  if(page.Counter > 1)
+    colnames(brca.Pats[[page.Counter]]) = colnames(brca.Pats[[page.Counter-1]])
+
+  if(nrow(brca.Pats[[page.Counter]]) < page.size){
+    all.Received = T
+  } else{
+    page.Counter = page.Counter + 1
+  }
+}
+brca.Pats = do.call(rbind, brca.Pats)
+dim(brca.Pats)
+```
+Our output for 'row' should now match the number displayed in the 'Clinical' bar on the Firebrows R website. 
+
+Now subset the data selecting only patients that are dead. This is only to produce a smaller dataset and reduce analysis time. You would only do this is your actual analysis if you only wanted to explore the data from dead patients. 
+
+Assign the subset into the same object (brca.Pats = brca.Pats) to overwrite the original file If you want to keep the original file unaltered assign the subset to a different object (e.g. brca.Pats.Sub = brca.Pats)
+
+To view the `brca.Pats` click on it on the left under 'Environment' or use `View(brca.Pats)`
+`vital_status` is a column in `brca.Pats` We use the `$` to tell R we want only that column. 
+```{r}
+brca.Pats = brca.Pats[ which(brca.Pats$vital_status == "dead"), ]
+```
+
+use `?Samples.mRNASeq` to explore this command and understand what is in the parenteses after `FirebrowseR::Samples.mRNASeq` below
+```{r}
+#create a vector of gene's that are known to be diffrentially expressed in breast cancer
+diff.Exp.Genes = c("ESR1", "GATA3", "XBP1", "FOXA1", "ERBB2", "GRB7", "EGFR",
+                   "FOXC1", "MYC")
+
+#iterate through our `brca.Pats` data set similar to above
+all.Found = FALSE
+page.Counter = 1
+#create an empty list called `mRNA.Exp`
+mRNA.Exp = list()
+page.Size = 2000 # using a bigger page size is faster
+while(all.Found == FALSE){
+  mRNA.Exp[[page.Counter]] = FirebrowseR::Samples.mRNASeq(format = "csv",
+                                             gene = diff.Exp.Genes,
+                                             cohort = "BRCA",
+                                             tcga_participant_barcode =
+                                               brca.Pats$tcga_participant_barcode,
+                                             page_size = page.Size,
+                                             page = page.Counter)
+  if(nrow(mRNA.Exp[[page.Counter]]) < page.Size)
+    all.Found = TRUE
+  else
+    page.Counter = page.Counter + 1
+}
+mRNA.Exp = do.call(rbind, mRNA.Exp)
+dim(mRNA.Exp)
+```
+
+We want to compare gene expression in samples that have both normal tissue `NT` and tumor tissue `TP` samples. 
+```{r}
+# Patients with normal tissue
+normal.Tissue.Pats = which(mRNA.Exp$sample_type == "NT")
+
+# get the patients barcodes
+patient.Barcodes = mRNA.Exp$tcga_participant_barcode[normal.Tissue.Pats]
+
+# Subset the mRNA.Exp data frame, keeping only the pre-selected barcodes AND
+# having a sample type of NT or TP
+mRNA.Exp = mRNA.Exp[which(mRNA.Exp$tcga_participant_barcode %in% patient.Barcodes &
+                            mRNA.Exp$sample_type %in% c("NT", "TP")), ]
+```
+
+Go to the library and 'check out' the package ggplot2 (installed above)
+
+```{r}
+library(ggplot2)
+```
+
+Plot a box plot of the expression levels for each gene.
+See the [ggplot2 cheat sheet](https://www.rstudio.com/resources/cheatsheets/) to understand the ggplot syntax
+```{r}
+p = ggplot(mRNA.Exp, aes(factor(gene), z.score))
+p +
+  geom_boxplot(aes(fill = factor(sample_type))) +
+  # we drop some outlier, so plot looks nicer, this also causes the warning
+  scale_y_continuous(limits = c(-1, 5)) +
+  scale_fill_discrete(name = "Tissue")
+```
+Upon visual inspection do you see any genes that appear to be deferentially expressed in tumor tissue `TP` vs normal tissue `NT`? 
