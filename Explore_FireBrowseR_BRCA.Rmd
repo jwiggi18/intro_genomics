@@ -2,7 +2,9 @@
 title: "Explore_FireBrowseR_BRCA"
 output: html_document
 ---
-
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(eval = FALSE)
+```
 This document follows the [FireBrowseR breast cancer mRNA expression example](https://rdrr.io/github/mariodeng/FirebrowseR/f/vignettes/FirebrowseR.Rmd#:~:text=Example%2C%20Breast%20Cancer%20mRNA%20expression)
 
 These instructions are for RStudio. 
