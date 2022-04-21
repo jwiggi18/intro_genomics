@@ -52,7 +52,7 @@ The method `Metadata.Cohorts` returns all cohort identifiers and their correspon
 Within the `cohorts` we search for (`grep`) "breast", yielding to the identifier for breast cancer.
 note: `grep` is a 'shell' command, not an R-specific command
 ```{r}
-cohorts = FirebrowsR::Metadata.Cohorts(format = "csv") # Download all available cohorts
+cohorts = FirebrowseR::Metadata.Cohorts(format = "csv") # Download all available cohorts
 cancer.Type = cohorts[grep("breast", cohorts$description, ignore.case = T), 1]
 print(cancer.Type)
 ```
