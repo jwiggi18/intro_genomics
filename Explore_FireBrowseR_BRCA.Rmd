@@ -32,11 +32,10 @@ install.packages("ggplot2")
 ```
 In the console you may be asked if you want to update packages, type 'a'
 
-go to the library and get the packages
+go to the library and get the `FirebrowseR` package
 ```{r}
 library(FirebrowseR)
 
-library(ggplot2)
 ```
 
 Following the FirebrowsR example (from the website above)

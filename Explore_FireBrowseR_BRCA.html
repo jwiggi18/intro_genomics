@@ -190,10 +190,8 @@ devtools::install_github(&quot;mariodeng/FirebrowseR&quot;)
 
 install.packages(&quot;ggplot2&quot;)</code></pre>
 <p>In the console you may be asked if you want to update packages, type ‘a’</p>
-<p>go to the library and get the packages</p>
-<pre class="r"><code>library(FirebrowseR)
-
-library(ggplot2)</code></pre>
+<p>go to the library and get the <code>FirebrowseR</code> package</p>
+<pre class="r"><code>library(FirebrowseR)</code></pre>
 <p>Following the FirebrowsR example (from the website above)</p>
 <p>##Investigate Breast Cancer and mRNA expression Look at the data in the browser: Navigate to firebrows.org in your browser In the ‘Select cohort’ drop down menu select the option that contains the word ‘breast’ Notice that the cohort associated with ‘breast’ is ‘Breast invasive carcinoma (BRCA)’</p>
 <p>Retrieve the data in R: The method <code>Metadata.Cohorts</code> returns all cohort identifiers and their corresponding description. We store these data in <code>cohorts</code>. Within the <code>cohorts</code> we search for (<code>grep</code>) “breast”, yielding to the identifier for breast cancer. note: <code>grep</code> is a ‘shell’ command, not an R-specific command</p>
